@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text;
 
 namespace CaesarCipher
 {
@@ -7,7 +8,22 @@ namespace CaesarCipher
     {
         public static string Rotate(string text, int shiftKey)
         {
-            throw new NotImplementedException("You need to implement this function.");
+            string cipher = string.Empty;
+            foreach(char ch in text)
+            {
+               cipher+=CipherHelper(ch,shiftKey);
+            }
+            return cipher;
         }
+        
+        public static char CipherHelper(char ch, int shiftKey) {  
+            if (!char.IsLetter(ch)) {  
+                return ch;  
+            }  
+  
+            char d = char.IsUpper(ch) ? 'A' : 'a';  
+            return (char)((((ch + shiftKey) - d) % 26) + d);  
+        }  
+
     }
 }
